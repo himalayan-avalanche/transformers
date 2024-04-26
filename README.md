@@ -12,5 +12,12 @@ To further illustrate, consider the example of English to French translation:
 
 To address both of the above limitations in learning long range context, Bahdanau et. al. proposed attention mechanism in their famous paper "Neural Machine Translation by Jointly Learning to Align and Translate (https://arxiv.org/abs/1409.0473)". Using this mechanism, Decoder can use large number of earlier hidden states (context) to generate better prediction.
 
+Lets see how it works. Lets call decoder as the translator. The decoder takes the previous word as input, and the previous hidden states (contexts) to compute which of the hidden states is more relevant to output the next prediction. The decoder assigns a attention score to each of previous hidden states context vectors, and uses a weighted average of the context vectors to use as input context vector to generate next prediction. The more relevant a hidden state the the deocder in predicting next word, higher the attention score of that hidden state. Also worth noting that in translation, when predicting the first word using decoder, the decoder is not using the last input sequence word, instead the special token that indicates the start of a new sequence.
+
+### What are quries, keys and values matrix?
+
+The hidden states of encoder are referred to as Key and Values, whereas the hidden states of decoder is referred to as Values matrix. Of course, the Query, Key and Values matrix go through the affine transformation before computing the attention score, and the context vector. The idea here is something like the hidden states of encoder with affine transformation works as key-value pair, and the decoder's hidden states (queries) query the key value pair to find the values (the context vector is weighted sum of value vector, weights being the alignment score, here is Lilian Wang's great article on this https://lilianweng.github.io/posts/2018-06-24-attention/).
+
+
 
 
