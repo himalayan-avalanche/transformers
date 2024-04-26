@@ -1,5 +1,6 @@
 # transformers_nitty_gritty
-### Learning the transformers concepts and implementations
+
+### Attention Mechanism
 
 While RNNs are powerful to learn sequential dependence among data, their use is often limited by the following reasons:
 1. Training a RNN network often require large number of hidden states to infer the context in the input sequence. Using large number of hidden states increases the computational complexity, which becomes a bottleneck in training RNNs for applications such as translations, summarization etc.
