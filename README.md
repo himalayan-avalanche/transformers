@@ -8,7 +8,8 @@ Transformers architecture consists of various components such as:
 2. Positional encoding: To emphasis the importance of tokens/word in sequence. 
 3. Stack of encoder and decoder modules.
 
-<img width="738" alt="image" src="https://github.com/himalayan-avalanche/transformers_nitty_gritty/assets/166877485/2bc81099-3df1-4acf-a2fb-189796e232a4">
+<img width="500" alt="image" src="https://github.com/himalayan-avalanche/transformers_nitty_gritty/assets/166877485/89822bbf-5c33-43d7-8245-adaeb3319fd1">
+
 
 ### Attention Mechanism
 
