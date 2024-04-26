@@ -18,6 +18,10 @@ Lets see how it works. Lets call decoder as the translator. The decoder takes th
 
 The hidden states of encoder are referred to as Key and Values, whereas the hidden states of decoder is referred to as Values matrix. Of course, the Query, Key and Values matrix go through the affine transformation before computing the attention score, and the context vector. The idea here is something like the hidden states of encoder with affine transformation works as key-value pair, and the decoder's hidden states (queries) query the key value pair to find the values (the context vector is weighted sum of value vector, weights being the alignment score, here is Lilian Wang's great article on this https://lilianweng.github.io/posts/2018-06-24-attention/).
 
+### Encoder, Decoder and Attention
+
+
+<img width="794" alt="image" src="https://github.com/himalayan-avalanche/transformers_nitty_gritty/assets/166877485/ce3f59e3-c28d-490a-be30-91c5b5ea4aae">
 
 
 
