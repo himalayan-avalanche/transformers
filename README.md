@@ -10,6 +10,7 @@ Transformers architecture consists of various components such as:
 
 <img width="500" alt="image" src="https://github.com/himalayan-avalanche/transformers_nitty_gritty/assets/166877485/89822bbf-5c33-43d7-8245-adaeb3319fd1">
 
+Below we plan to deep dive into each of the components.
 
 ### Attention Mechanism
 
@@ -28,6 +29,10 @@ Lets see how it works. Lets call decoder as the translator. The decoder takes th
 ### What are quries, keys and values matrix?
 
 The hidden states of encoder are referred to as Key and Values, whereas the hidden states of decoder is referred to as Values matrix. Of course, the Query, Key and Values matrix go through the affine transformation before computing the attention score, and the context vector. The idea here is something like the hidden states of encoder with affine transformation works as key-value pair, and the decoder's hidden states (queries) query the key value pair to find the values (the context vector is weighted sum of value vector, weights being the alignment score, here is Lilian Wang's great article on this https://lilianweng.github.io/posts/2018-06-24-attention/).
+
+### Whats Self Attention Mechanism?
+As the name suggests, the self attention mechnism in a way is special case of attention mechanism only using one sequence of input data. i.e. its goal is to score the context vector based on one sequence of input data. For applications such as machine translation, while attention meachnism may focus on words across various input sequence (like past 10 sentences), self attention would just consider 1 sentence. Self attention mechanism was introduced in Vasvani et al. https://arxiv.org/abs/1706.03762
+
 
 ### Encoder, Decoder and Attention
 
