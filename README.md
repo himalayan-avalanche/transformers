@@ -1,5 +1,15 @@
 # transformers_nitty_gritty
 
+Transformers are a type of deep learning model architecture primarily used for natural language processing (NLP) tasks, although they have also been applied to other domains such as computer vision. Introduced by Vaswani et al. in the paper "Attention is All You Need" in 2017, transformers have become the cornerstone of many state-of-the-art NLP models due to their ability to handle long-range dependencies in sequential data efficiently.
+
+Transformers architecture consists of various components such as:
+
+1. Transformer block: This consist of Multi Self-attention mechanisms, feed forward network, and layer normalization.
+2. Positional encoding: To emphasis the importance of tokens/word in sequence. 
+3. Stack of encoder and decoder modules.
+
+<img width="738" alt="image" src="https://github.com/himalayan-avalanche/transformers_nitty_gritty/assets/166877485/2bc81099-3df1-4acf-a2fb-189796e232a4">
+
 ### Attention Mechanism
 
 While RNNs are powerful to learn sequential dependence among data, their use is often limited by the following reasons:
