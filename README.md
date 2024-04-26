@@ -33,6 +33,11 @@ The hidden states of encoder are referred to as Key and Values, whereas the hidd
 ### Whats Self Attention Mechanism?
 As the name suggests, the self attention mechnism in a way is special case of attention mechanism only using one sequence of input data. i.e. its goal is to score the context vector based on one sequence of input data. For applications such as machine translation, while attention meachnism may focus on words across various input sequence (like past 10 sentences), self attention would just consider 1 sentence. Self attention mechanism was introduced in Vasvani et al. https://arxiv.org/abs/1706.03762
 
+### Whats multi head self attention mechanism?
+To understand why we may need multi-self attention, consider an example of movie recommendation on Netflix. The movie "Back to Future (https://www.imdb.com/title/tt0088763/?ref_=ttls_li_tt) can be classified in multiple genre such as sci-fi, adventure, fantasy, comedy etc. i.e. Based on limited mview seen by a user, its hard to pinpoint their likes/dislikes. For instance a user might want to see the this movie, because they like certain genre, or they are big fan of Michal Fox, Christopher Lloyd , plot, the story etc. i.e. to provide a good conttextual movie recommendation, decoder must be able to generate user contexts from multiple points of view. This can be achived by having multi-self attention. However when passing to the decoder, all self attention context vectors are added to generate one final context vector. The final context vector is concatenated with hidden state, passed to a linear layer to generate the output. A softmax function is applied on this output vector to generate probabilities, and the final output word/token is the one that corresponds to max probabilty.
+
+### Whats encoder consists of?
+The encoder module consists of m
 
 ### Encoder, Decoder and Attention
 
