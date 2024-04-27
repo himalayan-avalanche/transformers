@@ -1,4 +1,4 @@
-# transformers_nitty_gritty
+# Transformers Overview
 
 Transformers are a type of deep learning model architecture primarily used for natural language processing (NLP) tasks, although they have also been applied to other domains such as computer vision. Introduced by Vaswani et al. in the paper "Attention is All You Need" in 2017, transformers have become the cornerstone of many state-of-the-art NLP models due to their ability to handle long-range dependencies in sequential data efficiently.
 
