@@ -11,3 +11,19 @@ In PyTorch, optim.lr_scheduler is a module that provides various strategies for 
 	•	Speed Up Convergence: Start with a higher learning rate to converge faster in the early stages and then reduce it as the model approaches the optimal solution.
 	•	Fine-tuning: In some cases, after initial training, it’s beneficial to lower the learning rate to fine-tune the model’s performance.
  
+#### Commonly Used Learning Rate Schedulers in PyTorch
+1.	StepLR: Decreases the learning rate by a factor (gamma) every few epochs (based on a step size).
+   
+ ```python
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
+```
+
+ 	•	step_size: Number of epochs after which the learning rate is decayed.
+	•	gamma: Multiplicative factor for learning rate decay.
+
+2.	MultiStepLR: Decreases the learning rate at specific epochs (milestones).
+   
+```python
+scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 80], gamma=0.1)
+```
+
