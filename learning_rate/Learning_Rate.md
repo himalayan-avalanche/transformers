@@ -27,3 +27,36 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
 scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, milestones=[30, 80], gamma=0.1)
 ```
 
+3.	ExponentialLR: Decays the learning rate exponentially by a factor of gamma at every epoch.
+
+```python
+scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.95)
+```
+
+ 	•	gamma: Multiplicative factor for learning rate decay every epoch.
+
+4.	CosineAnnealingLR: Decreases the learning rate following a cosine curve.
+
+```python
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=50)
+```
+	•	T_max: Maximum number of iterations for which the learning rate decays following the cosine schedule.
+
+5.	ReduceLROnPlateau: Reduces the learning rate when a metric has stopped improving (e.g., validation loss).
+   
+```python
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', patience=10, factor=0.1)
+```
+	•	mode: Defines whether the metric is minimized (‘min’) or maximized (‘max’).
+	•	patience: Number of epochs with no improvement after which learning rate is reduced.
+	•	factor: Factor by which the learning rate is reduced.
+	•	threshold: Minimum change in the metric to qualify as an improvement.
+ 
+6.	LambdaLR: Custom learning rate scheduler that applies a lambda function to adjust the learning rate.
+
+
+```python
+lambda1 = lambda epoch: 0.95 ** epoch
+scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda1)
+```
+	•	lr_lambda: A function that defines how the learning rate changes with each epoch.
