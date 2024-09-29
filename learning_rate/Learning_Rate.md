@@ -60,3 +60,81 @@ lambda1 = lambda epoch: 0.95 ** epoch
 scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda1)
 ```
 	•	lr_lambda: A function that defines how the learning rate changes with each epoch.
+
+### Examples with Simple Linear Regression Model
+
+```python
+import torch
+import torch.optim as optim
+import torch.nn as nn
+
+device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
+```
+
+#### Generate some data
+
+```python
+n=1000
+p=5
+
+x=torch.randn(n, p).to(device)
+w_true=torch.tensor([i/0.5 for i in range(p)], dtype=torch.float, device=device)
+
+noise_mean=0
+noise_std=0.2
+
+y=x@w_true+ noise_std*torch.randn(n, dtype=torch.float, device=device) + noise_mean
+y=y.reshape(-1, 1).to(device)
+
+x.shape, y.shape
+```
+#### Train Model 
+
+```python
+def train_model(scheduler=False):
+    
+    torch.manual_seed(42)
+    lr=0.25
+    model = nn.Sequential(nn.Linear(p, 1)).to(device)
+    loss_fn=nn.MSELoss(reduction='mean')
+    optimizer = optim.SGD(model.parameters(), lr=lr)
+    if scheduler=='StepLR':
+        schdler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=1, gamma=.9)
+    if scheduler=='CosineAnnealingLR':
+        schdler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=100)
+    if scheduler=='ExponentialLR':
+        schdler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.95)
+    if scheduler=='ReduceLROnPlateau':
+        schdler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', patience=10, factor=0.1)
+    
+    n_epoch=100
+
+    for epoch in range(n_epoch):
+        model.train()
+        loss=loss_fn(model(x), y)
+        optimizer.zero_grad(set_to_none=True) 
+        loss.backward()
+        optimizer.step() 
+        if scheduler=='ReduceLROnPlateau':
+            schdler.step(loss)
+        elif scheduler:
+            schdler.step()
+        else:
+            continue
+    print(f"\nEpoch :: {epoch+1} ")
+    if scheduler:
+        print(f"Learning rate is {schdler.get_last_lr()[0]}")
+    print(f"Weights: {model.state_dict().values().mapping['0.weight'][0]}")
+    print(f"Bias:    {model.state_dict().values().mapping['0.bias'][0]}")
+    print(f"Loss: {loss.item()}\n")
+```
+
+#### No Scheduler
+```python
+train_model(scheduler=False)
+```
+-> Epoch :: 100 
+Weights: tensor([4.0653e-03, 2.0031e+00, 3.9963e+00, 6.0017e+00, 7.9960e+00],
+       device='mps:0')
+Bias:    -0.0032501553650945425
+Loss: 0.040374353528022766
