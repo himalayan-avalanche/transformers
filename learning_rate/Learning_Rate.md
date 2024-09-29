@@ -133,7 +133,7 @@ def train_model(scheduler=False):
 ```python
 train_model(scheduler=False)
 ```
--> Epoch :: 100 
+> Epoch :: 100 
 Weights: tensor([4.0653e-03, 2.0031e+00, 3.9963e+00, 6.0017e+00, 7.9960e+00],
        device='mps:0')
 Bias:    -0.0032501553650945425
