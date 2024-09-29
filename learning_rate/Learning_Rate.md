@@ -121,12 +121,12 @@ def train_model(scheduler=False):
             schdler.step()
         else:
             continue
-    print(f"\nEpoch :: {epoch+1} ")
+    print(f"\n\nEpoch :: {epoch+1} ")
     if scheduler:
-        print(f"Learning rate is {schdler.get_last_lr()[0]}")
-    print(f"Weights: {model.state_dict().values().mapping['0.weight'][0]}")
-    print(f"Bias:    {model.state_dict().values().mapping['0.bias'][0]}")
-    print(f"Loss: {loss.item()}\n")
+        print(f"\nLearning rate is {schdler.get_last_lr()[0]}")
+    print(f"\nWeights: {model.state_dict().values().mapping['0.weight'][0]}")
+    print(f"\nBias:    {model.state_dict().values().mapping['0.bias'][0]}")
+    print(f"\nLoss: {loss.item()}\n")
 ```
 
 #### No Scheduler
@@ -134,7 +134,76 @@ def train_model(scheduler=False):
 train_model(scheduler=False)
 ```
 > Epoch :: 100 
+
 Weights: tensor([4.0653e-03, 2.0031e+00, 3.9963e+00, 6.0017e+00, 7.9960e+00],
        device='mps:0')
+
 Bias:    -0.0032501553650945425
+
 Loss: 0.040374353528022766
+
+#### StepLR
+```python
+train_model(scheduler=False)
+```
+Epoch :: 100 
+
+Learning rate is 6.640349721896886e-06
+
+Weights: tensor([2.6342e-04, 1.9987e+00, 3.9895e+00, 5.9875e+00, 7.9746e+00],
+       device='mps:0')
+
+Bias:    0.0056349434889853
+
+Loss: 0.04118192568421364
+
+#### CosineAnnealingLR
+```python
+train_model(scheduler=False)
+```
+Epoch :: 100 
+
+Learning rate is 0.0
+
+Weights: tensor([4.0653e-03, 2.0031e+00, 3.9963e+00, 6.0017e+00, 7.9960e+00],
+       device='mps:0')
+
+Bias:    -0.00325010041706264
+
+Loss: 0.040374353528022766
+
+
+#### ExponentialLR
+```python
+train_model(scheduler=False)
+```
+Epoch :: 100 
+
+Learning rate is 0.0014801323050834992
+
+Weights: tensor([4.0360e-03, 2.0031e+00, 3.9963e+00, 6.0017e+00, 7.9959e+00],
+       device='mps:0')
+
+Bias:    -0.0031858838628977537
+
+Loss: 0.04037437215447426
+
+
+#### #### ReduceLROnPlateau
+
+```python
+train_model(scheduler=False)
+```
+Epoch :: 100 
+
+Learning rate is 2.5000000000000012e-08
+
+Weights: tensor([4.0652e-03, 2.0031e+00, 3.9963e+00, 6.0017e+00, 7.9960e+00],
+       device='mps:0')
+
+Bias:    -0.0032497388310730457
+
+Loss: 0.04037436097860336
+
+
+
